@@ -1,6 +1,6 @@
 {
   "name": "json-library",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "range of json, json pointer, json schema and json relationship utility functions",
   "main": "index.js",
   "private": true,
@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sascha Goldhofer",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "chai": "^1.9.2",
     "grunt": "^0.4.5",
