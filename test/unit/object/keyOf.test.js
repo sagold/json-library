@@ -1,32 +1,30 @@
+"use strict";
+
 var expect = require("chai").expect;
 
 var o = require("../../../lib/object");
 
+describe("object.keyOf", function () {
 
-describe("object", function () {
+	it("should return the property of needle", function () {
+		var data = {
+			"first": {"name": "first"},
+			"second": {"name": "second"}
+		};
 
-	describe("keyOf", function () {
+		var key = o.keyOf(data, data.second);
 
-		it("should return the property of needle", function () {
-			var data = {
-				"first": {"name": "first"},
-				"second": {"name": "second"}
-			};
+		expect(key).to.eql("second");
+	});
 
-			var key = o.keyOf(data, data.second);
+	it("should return null of not found", function () {
+		var data = {
+			"first": {"name": "first"},
+			"second": {"name": "second"}
+		};
 
-			expect(key).to.eql("second");
-		});
+		var key = o.keyOf(data, {});
 
-		it("should return null of not found", function () {
-			var data = {
-				"first": {"name": "first"},
-				"second": {"name": "second"}
-			};
-
-			var key = o.keyOf(data, {});
-
-			expect(key).to.be.null;
-		});
+		expect(key).to.be.null;
 	});
 });
