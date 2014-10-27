@@ -102,7 +102,7 @@ describe("relation.load", function () {
 			}
 		});
 
-		it ("should resolve within array", function () {
+		it("should load object within foreign_key array", function () {
 			var model,
 				defRelation = {
 					"model": "#/model",

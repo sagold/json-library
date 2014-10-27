@@ -45,6 +45,21 @@ describe("relation.unload", function () {
 			expect(model.first.rel[1]).to.eq("third");
 		});
 
+		it("should remove alias for has_many relationship", function () {
+			var defRelation = {
+				"model": "#/model",
+				"references": "relatedModel",
+				"foreign_key": "rel",
+				"alias": "rel",
+				"type": "has_many"
+			};
+
+			var model = unload(data, defRelation);
+
+			expect(model.first.rel).to.be.undefined;
+			expect(model.second.rel).to.be.undefined;
+		});
+
 		it("should remove alias for has_many-through relationship", function () {
 			var defRelation = {
 				"model": "#/model",
