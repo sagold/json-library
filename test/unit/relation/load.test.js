@@ -2,7 +2,7 @@ var expect = require("chai").expect;
 
 var load = require("../../../lib/relation/load");
 
-describe("load", function () {
+describe("relation.load", function () {
 
 	describe("has_one", function () {
 
@@ -21,21 +21,18 @@ describe("load", function () {
 					}
 				},
 				"relatedModel": {
-					first: {
-						"name": "related tupel #1"
-					},
-					second: {
-						"name": "related tupel #2"
-					}
+					first: {"name": "related tupel #1"},
+					second: {"name": "related tupel #2"},
+					third: {"name": "related tupel #3"}
 				},
-				"model_relatedModel": {
-					"first": "first",
-					"second": "second"
+				model_relatedModel: {
+					first: "first",
+					second: "second"
 				}
 			}
 		});
 
-		it("should load the referenced model", function () {
+		it("should resolve to foreign_key", function () {
 			var model,
 				defRelation = {
 					"model": "#/model",
@@ -48,7 +45,7 @@ describe("load", function () {
 			expect(model.first.related_pk).to.eql(data.relatedModel.first);
 		});
 
-		it("should resolve the referenced model on alias", function () {
+		it("should resolve to alias", function () {
 			var model,
 				defRelation = {
 					"model": "#/model",
@@ -62,7 +59,7 @@ describe("load", function () {
 			expect(model.first.relationship).to.eql(data.relatedModel.first);
 		});
 
-		it("should resolve relationship through pivot_table", function () {
+		it("should resolve by pivot table", function () {
 			var model,
 				defRelation = {
 					"model": "#/model",
@@ -86,36 +83,41 @@ describe("load", function () {
 				"model": {
 					first: {
 						"name": "tupel #1",
-						"related_pk": "first"
+						"rel": ["first", "third"]
 					},
 					second: {
 						"name": "tupel #2",
-						"related_pk": "second"
+						"rel": ["first", "second", "third"]
 					}
 				},
 				"relatedModel": {
-					first: {
-						"name": "related tupel #1"
-					},
-					second: {
-						"name": "related tupel #2"
-					},
-					third: {
-						"name": "related tupel #3"
-					}
+					first: {"name": "related tupel #1"},
+					second: {"name": "related tupel #2"},
+					third: {"name": "related tupel #3"}
 				},
-				"model_relatedModel": {
-					"first": ["first", "third"],
-					"second": ["first", "second", "third"]
-				},
-				"invalid": {
-					"first": "second",
-					"second": "first"
+				model_relatedModel: {
+					first: ["first", "third"],
+					second: ["first", "second", "third"]
 				}
 			}
 		});
 
-		it ("should load has_many relationships as array", function () {
+		it ("should resolve within array", function () {
+			var model,
+				defRelation = {
+					"model": "#/model",
+					"foreign_key": "rel",
+					"references": "#/relatedModel",
+					"type": "has_many"
+				};
+
+			var model = load(data, defRelation);
+
+			expect(model.first.rel.length).to.eql(2);
+			expect(model.first.rel[1]).to.eql(data.relatedModel.third);
+		});
+
+		it ("should resolve array through pivot table", function () {
 			var model,
 				defRelation = {
 					"model": "#/model",
