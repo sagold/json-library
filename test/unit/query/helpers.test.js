@@ -19,7 +19,8 @@ describe("query", function () {
 				"third": [
 					{ "type": "inThird" },
 					{ "type": "secondInThird" },
-				]
+				],
+				"id": "obj"
 			};
 
 			arr = [
@@ -38,7 +39,7 @@ describe("query", function () {
 		it("should return all elements", function () {
 			var result = filter(obj, "*");
 
-			expect(result.length).to.eq(3);
+			expect(result.length).to.eq(4);
 		});
 
 		it("should return selected element", function () {
@@ -121,7 +122,7 @@ describe("query", function () {
 			expect(is_valid).to.be.false;
 		});
 
-		it("should return true query matches", function () {
+		it("should return true if query has matches", function () {
 			var is_valid = valid({
 
 				"type": true
