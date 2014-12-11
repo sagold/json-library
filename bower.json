@@ -1,0 +1,13 @@
+{
+  "name": "json-library",
+  "version": "0.0.1",
+  "description": "A range of json, json pointer, json schema and json relationship utility functions",
+  "main": "lib/index.js",
+  "ignore": [
+  	"package.json",
+  	"test",
+  	"node_modules",
+  	"Gruntfile.js"
+  ],
+  "dependencies": {}
+}
