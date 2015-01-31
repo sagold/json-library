@@ -1,7 +1,7 @@
 # query
 
 
-At first query acts like a normal json-pointer where its match is passed to the given callback function:
+At first query acts like a normal **json-pointer** where its match is passed to the given callback function:
 
 ```js
 	var query = require("query").query;
@@ -18,7 +18,7 @@ At first query acts like a normal json-pointer where its match is passed to the 
 ```
 
 
-But query also supports glob-patterns with `*`:
+But query also supports **glob-patterns** with `*`:
 
 ```js
 	var query = require("query").query;
@@ -35,7 +35,7 @@ But query also supports glob-patterns with `*`:
 	});
 ```
 
-and glob-patterns with `**`:
+and **glob-patterns** with `**`:
 
 ```js
 	var query = require("query").query;
@@ -52,7 +52,7 @@ and glob-patterns with `**`:
 	});
 ```
 
-To filter all matched objects a filter may be applied on each single step:
+To **filter** all matched objects a filter may be applied on each single step:
 
 ```js
 	var query = require("query").query;
@@ -69,6 +69,8 @@ To filter all matched objects a filter may be applied on each single step:
 	query(data, "#/**?valid:true&&ignore:undefined/child", function (value, object, key) {
 		// will be called with value: {"id": "child-1"} only
 	});
+	// same result with
+	query(data, "#/**?valid:!false/child", function (value, object, key) { // ...
 ```
 
 
