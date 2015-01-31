@@ -52,7 +52,7 @@ and **glob-patterns** with `**`:
 	});
 ```
 
-To **filter** all matched objects a filter may be applied on each single step:
+To **filter** the matched objects an object-query string may be appended on each single step:
 
 ```js
 	var query = require("query").query;
