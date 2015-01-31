@@ -162,7 +162,6 @@ describe("query", function () {
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(6);
-			// expect(cbMock.args.pop()[0]).to.a.string;
 		});
 
 		it("should callback on all matched keys", function () {

@@ -66,7 +66,7 @@ To filter all matched objects a filter may be applied on each single step:
 			"child": {"id": "child-2"}
 		}
 	};
-	query(data, "#/**?valid:true&ignore:undefined/child", function (value, object, key) {
+	query(data, "#/**?valid:true&&ignore:undefined/child", function (value, object, key) {
 		// will be called with value: {"id": "child-1"} only
 	});
 ```

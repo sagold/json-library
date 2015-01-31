@@ -68,7 +68,7 @@ describe("query", function () {
 				}
 			};
 
-			q.query(data, "#/**?valid:true&ignore:undefined/child", cbMock);
+			q.query(data, "#/**?valid:true&&ignore:undefined/child", cbMock);
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(1);
 			expect(cbMock.args[0][0]).to.eq(data.parent.child);

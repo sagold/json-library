@@ -41,7 +41,7 @@ describe("valid", function () {
 			"type": "var",
 			"init": false
 
-		}, "type:var&init:false");
+		}, "type:var&&init:false");
 
 		expect(is_valid).to.be.true;
 	});
@@ -62,7 +62,7 @@ describe("valid", function () {
 			"type": true,
 			"init": false
 
-		}, "init:!true&type:!funny");
+		}, "init:!true&&type:!funny");
 
 		expect(is_valid).to.be.true;
 	});
@@ -83,13 +83,23 @@ describe("valid", function () {
 			"type": "var",
 			"init": false
 
-		}, "type:var&init:false&init:!false");
+		}, "type:var&&init:false&&init:!false");
 
 		expect(is_valid).to.be.false;
 	});
 
 	it("should validate undefined", function () {
 		var is_valid = valid({}, "init:undefined");
+
+		expect(is_valid).to.be.true;
+	});
+
+	it("should support or operator", function () {
+		var is_valid = valid({
+
+			"value": true
+
+		}, "value:false||init:undefined||init:!undefined");
 
 		expect(is_valid).to.be.true;
 	});
