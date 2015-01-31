@@ -56,28 +56,28 @@ describe("filter", function () {
 	});
 
 	it("should return all matched elements", function () {
-		var result = filter(obj, "*|type:true");
+		var result = filter(obj, "*?type:true");
 
 		expect(result.length).to.eq(2);
 		expect(result[1]).to.eq(obj.second);
 	});
 
 	it("should return object as array", function () {
-		var result = filter(obj, "first|type:true");
+		var result = filter(obj, "first?type:true");
 
 		expect(result.length).to.eq(1);
 		expect(result[0]).to.eq(obj.first);
 	});
 
 	// it.only("should return objects with type defined", function () {
-	// 	var result = filter(arr, "*|type!null");
+	// 	var result = filter(arr, "*?type!null");
 	// 	console.log(result);
 	// 	expect(result.length).to.eq(2);
 	// 	expect(result[1]).to.eq(arr[1]);
 	// });
 
 	it("should return empty array if nothing found", function () {
-		var result = filter(obj, "*|type:false");
+		var result = filter(obj, "*?type:false");
 
 		expect(result.length).to.eq(0);
 	});
@@ -89,25 +89,25 @@ describe("filter", function () {
 	});
 
 	it("should return empty array if object invalid", function () {
-		var result = filter(obj, "first|type:false");
+		var result = filter(obj, "first?type:false");
 
 		expect(result.length).to.eq(0);
 	});
 
 	it("should return empty array if property not found", function () {
-		var result = filter(obj, "first|type:false");
+		var result = filter(obj, "first?type:false");
 
 		expect(result.length).to.eq(0);
 	});
 
 		it("should query * in array", function () {
-			var result = filter(arr, "*|type:true");
+			var result = filter(arr, "*?type:true");
 
 			expect(result.length).to.eq(2);
 		});
 
 		it("should return empty array for input array", function () {
-			var result = filter(arr, "first|type:true");
+			var result = filter(arr, "first?type:true");
 
 			expect(result.length).to.eq(0);
 		});
@@ -120,7 +120,7 @@ describe("filter", function () {
 		});
 
 		it("should query index in array", function () {
-			var result = filter(arr, "1|type:true");
+			var result = filter(arr, "1?type:true");
 
 			expect(result.length).to.eq(1);
 			expect(result[0].id).to.eq("second");

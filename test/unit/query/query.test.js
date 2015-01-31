@@ -107,7 +107,7 @@ describe("query", function () {
 	});
 
 
-	describe(".filter", function () {
+	describe("filter", function () {
 
 		it("should callback on matched items", function () {
 
@@ -118,7 +118,7 @@ describe("query", function () {
 				"second": {
 					"value": "last"
 				}
-			}, "/*|value:last", cbMock);
+			}, "/*?value:last", cbMock);
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(1);
@@ -134,7 +134,7 @@ describe("query", function () {
 				"second": {
 					"value": "last"
 				}
-			}, "/*|value:last/value", cbMock);
+			}, "/*?value:last/value", cbMock);
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(1);
@@ -178,7 +178,7 @@ describe("query", function () {
 					"value": "last"
 				}
 
-			}, "/**|value:!undefined", cbMock);
+			}, "/**?value:!undefined", cbMock);
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(3);
@@ -208,7 +208,7 @@ describe("query", function () {
 						}
 					}
 				}
-			}, "#/**/*|needle:needle", cbMock);
+			}, "#/**/*?needle:needle", cbMock);
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(4);
