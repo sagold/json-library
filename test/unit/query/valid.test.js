@@ -3,8 +3,8 @@
 var expect = require("chai").expect;
 
 
-var query = require("../../../lib/query"),
-	valid = query.valid;
+var filter = require("../../../lib/query/filter"),
+	valid = filter.valid;
 
 
 describe("valid", function () {
