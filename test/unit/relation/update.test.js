@@ -29,7 +29,6 @@ describe("relation.update", function () {
 	describe("has_one", function () {
 
 		it("should update relationships in pivot", function () {
-			// "articles has_one:contents as:article through:articles_contents";
 			var relationship = {
 				model: "#/articles",
 				type: "has_one",
@@ -46,7 +45,6 @@ describe("relation.update", function () {
 		});
 
 		it("should update reference model and pivot table", function () {
-			// "articles hasOne:contents as:article through:articles_contents";
 			var relationship = {
 				model: "#/articles",
 				type: "has_one",
@@ -65,7 +63,6 @@ describe("relation.update", function () {
 		});
 
 		it("should update reference model", function () {
-			// "articles hasOne:contents as:article";
 			var relationship = {
 				model: "#/articles",
 				type: "has_one",
@@ -108,7 +105,6 @@ describe("relation.update", function () {
 		});
 
 		it("should update relationships in pivot", function () {
-			// "articles has_many:contents as:articles through:articles_contents";
 			var relationship = {
 				model: "#/articles",
 				type: "has_many",
@@ -127,7 +123,6 @@ describe("relation.update", function () {
 		});
 
 		it("should update relationships in referenced model", function () {
-			// "articles has_many:contents as:articles through:articles_contents";
 			var relationship = {
 				model: "#/articles",
 				type: "has_many",
@@ -147,7 +142,6 @@ describe("relation.update", function () {
 		});
 
 		it("should update foreign_keys", function () {
-			// "articles has_many:contents as:articles through:articles_contents";
 			var relationship = {
 				model: "#/articles",
 				type: "has_many",
