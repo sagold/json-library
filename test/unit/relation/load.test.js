@@ -95,7 +95,7 @@ describe("relation.load", function () {
 					second: {"name": "related tupel #2"},
 					third: {"name": "related tupel #3"}
 				},
-				model_relatedModel: {
+				"model_relatedModel": {
 					first: ["first", "third"],
 					second: ["first", "second", "third"]
 				}
