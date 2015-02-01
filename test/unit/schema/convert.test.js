@@ -40,6 +40,6 @@ describe("schema.convert", function () {
 			type: "has_many"
 		});
 
-		expect(converted.properties["parent"].properties["children"]).to.be.an("object");
+		expect(converted.properties["parent"].properties["children"]).to.be.an.object;
 	});
 });

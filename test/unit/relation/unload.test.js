@@ -138,5 +138,26 @@ describe("relation.unload", function () {
 
 			expect(model.first.rel).to.be.undefined;
 		});
+
+		// it("should update pivot tables", function () {
+		// 	var defRelation = {
+		// 		"model": "#/model",
+		// 		"references": "relatedModel",
+		// 		"through": "model_relatedModel",
+		// 		"alias": "rel"
+		// 	};
+		// 	// link model model.second -> relatedModel.first
+		// 	data.model.second = {
+		// 		"second": {
+		// 			"rel": null
+		// 		}
+		// 	};
+		// 	data.model.second.rel = data.relatedModel.second;
+
+		// 	var model = unload(data, defRelation);
+
+		// 	expect(model.second.rel).to.be.undefined;
+		// 	expect(data["model_relatedModel"].second).to.eql("first");
+		// });
 	});
 });
