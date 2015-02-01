@@ -4,7 +4,7 @@ var pointer = require("../../../lib/pointer"),
 	join = pointer.join;
 
 
-describe.only("pointer.join()", function () {
+describe("pointer.join()", function () {
 
 	it("should return a json pointer", function () {
 
