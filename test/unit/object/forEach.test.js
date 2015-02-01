@@ -22,6 +22,15 @@ describe("object.forEach", function () {
 		expect(result).to.deep.equal(["first", "second"]);
 	});
 
+	it("should callback on all array items", function () {
+		var result = [];
+		o.forEach(["a", "b", "e"], function (key) {
+			result.push(key);
+		});
+
+		expect(result).to.deep.equal(["a", "b", "e"]);
+	});
+
 	it("should callback with property, value, object", function () {
 		var result = [],
 			data = {

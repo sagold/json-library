@@ -2,6 +2,7 @@ var expect = require("chai").expect;
 
 var q = require("../../../lib/query");
 
+
 describe("query", function () {
 
 	var cbMock;
@@ -67,69 +68,150 @@ describe("query", function () {
 		expect(cbMock.args.length).to.eq(0);
 	});
 
-	it("should callback on all items", function () {
 
-		q.query({
-			"first": {
-				"value": "text"
-			},
-			"second": "last"
-		}, "/*", cbMock);
+	describe("*", function () {
 
-		expect(cbMock.called).to.be.true;
-		expect(cbMock.args.length).to.eq(2);
-		expect(cbMock.args.pop()[0]).to.eq("last");
+		it("should callback on all items", function () {
+
+			q.query({
+				"first": {
+					"value": "text"
+				},
+				"second": "last"
+			}, "/*", cbMock);
+
+			expect(cbMock.called).to.be.true;
+			expect(cbMock.args.length).to.eq(2);
+			expect(cbMock.args.pop()[0]).to.eq("last");
+		});
+
+		it("should continue for all found items", function () {
+
+			q.query({
+				"first": {
+					"value": "first"
+				},
+				"second": {
+					"value": "second"
+				},
+				"third": {
+					"value": "third"
+				}
+
+			}, "/*/value", cbMock);
+
+			expect(cbMock.called).to.be.true;
+			expect(cbMock.args.length).to.eq(3);
+			expect(cbMock.args.pop()[0]).to.eq("third");
+		});
 	});
 
-	it("should continue for all found items", function () {
 
-		q.query({
-			"first": {
-				"value": "first"
-			},
-			"second": {
-				"value": "second"
-			},
-			"third": {
-				"value": "third"
-			}
+	describe("filter", function () {
 
-		}, "/*/value", cbMock);
+		it("should callback on matched items", function () {
 
-		expect(cbMock.called).to.be.true;
-		expect(cbMock.args.length).to.eq(3);
-		expect(cbMock.args.pop()[0]).to.eq("third");
+			q.query({
+				"first": {
+					"value": "text"
+				},
+				"second": {
+					"value": "last"
+				}
+			}, "/*?value:last", cbMock);
+
+			expect(cbMock.called).to.be.true;
+			expect(cbMock.args.length).to.eq(1);
+			expect(cbMock.args.pop()[0].value).to.eq("last");
+		});
+
+		it("should continue after query", function () {
+
+			q.query({
+				"first": {
+					"value": "text"
+				},
+				"second": {
+					"value": "last"
+				}
+			}, "/*?value:last/value", cbMock);
+
+			expect(cbMock.called).to.be.true;
+			expect(cbMock.args.length).to.eq(1);
+			expect(cbMock.args.pop()[0]).to.eq("last");
+		});
 	});
 
-	it("should callback on matched items", function () {
 
-		q.query({
-			"first": {
-				"value": "text"
-			},
-			"second": {
-				"value": "last"
-			}
-		}, "/*|value:last", cbMock);
+	describe("**", function () {
 
-		expect(cbMock.called).to.be.true;
-		expect(cbMock.args.length).to.eq(1);
-		expect(cbMock.args.pop()[0].value).to.eq("last");
-	});
+		it("should callback on all keys", function () {
 
-	it("should continue after query", function () {
+			q.query({
+				"1": {
+					"value": "2",
+					"3": {
+						"value": "4"
+					}
+				},
+				"5": {
+					"value": "6"
+				}
 
-		q.query({
-			"first": {
-				"value": "text"
-			},
-			"second": {
-				"value": "last"
-			}
-		}, "/*|value:last/value", cbMock);
+			}, "/**", cbMock);
 
-		expect(cbMock.called).to.be.true;
-		expect(cbMock.args.length).to.eq(1);
-		expect(cbMock.args.pop()[0]).to.eq("last");
+			expect(cbMock.called).to.be.true;
+			expect(cbMock.args.length).to.eq(6);
+		});
+
+		it("should callback on all matched keys", function () {
+
+			q.query({
+				"first": {
+					"value": "text",
+					"inner": {
+						"value": ""
+					}
+				},
+				"second": {
+					"value": "last"
+				}
+
+			}, "/**?value:!undefined", cbMock);
+
+			expect(cbMock.called).to.be.true;
+			expect(cbMock.args.length).to.eq(3);
+			expect(cbMock.args.pop()[0]).to.a.string;
+		});
+
+		it("should continue on matched globs", function () {
+
+			q.query({
+				"a": {
+					"id": "a",
+					"needle": "needle",
+				},
+				"b": {
+					"id": "b",
+					"needle": "needle",
+					"d": {
+						"id": "d",
+						"needle": "needle"
+					}
+				},
+				"c": {
+					"e": {
+						"f": {
+							"id": "f",
+							"needle": "needle"
+						}
+					}
+				}
+			}, "#/**/*?needle:needle", cbMock);
+
+			expect(cbMock.called).to.be.true;
+			expect(cbMock.args.length).to.eq(4);
+			expect(cbMock.args.pop()[0]).to.a.string;
+		});
 	});
 });
