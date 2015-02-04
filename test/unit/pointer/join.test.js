@@ -26,4 +26,11 @@ describe("pointer.join()", function () {
 
 		expect(pointer).to.eq("#/parent/child/target");
 	});
+
+	it("should not have multiple slashes", function () {
+
+		var pointer = join("#", "", "first");
+
+		expect(pointer).to.eq("#/first");
+	});
 });
