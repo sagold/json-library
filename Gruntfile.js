@@ -138,5 +138,5 @@ module.exports = function (grunt) {
     grunt.registerTask('tdd', 'watch');
     // build
     grunt.registerTask('build', 'webpack:build');
-    grunt.registerTask('dist', 'webpack:dist');
+    grunt.registerTask('dist', ['test', 'webpack:dist']);
 };
