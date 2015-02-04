@@ -31,7 +31,7 @@ describe("query", function () {
 		expect(cbMock.args[0][0].value).to.eq("text");
 	});
 
-	it("should callback with value, object, key", function () {
+	it("should callback with value, object, key and pointer", function () {
 
 		q.query({
 			"first": {
@@ -42,6 +42,7 @@ describe("query", function () {
 		expect(cbMock.args[0][0].value).to.eq("text");
 		expect(cbMock.args[0][1].first.value).to.eq("text");
 		expect(cbMock.args[0][2]).to.eq("first");
+		expect(cbMock.args[0][3]).to.eq("#/first");
 	});
 
 	it("should callback on nested objects", function () {
@@ -54,6 +55,7 @@ describe("query", function () {
 
 		expect(cbMock.args.length).to.eq(1);
 		expect(cbMock.args[0][0]).to.eq("text");
+		expect(cbMock.args[0][3]).to.eq("#/first/value");
 	});
 
 	it("should callback only if match", function () {
@@ -82,7 +84,8 @@ describe("query", function () {
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(2);
-			expect(cbMock.args.pop()[0]).to.eq("last");
+			expect(cbMock.args[1][0]).to.eq("last");
+			expect(cbMock.args[1][3]).to.eq("#/second");
 		});
 
 		it("should continue for all found items", function () {
@@ -102,7 +105,8 @@ describe("query", function () {
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(3);
-			expect(cbMock.args.pop()[0]).to.eq("third");
+			expect(cbMock.args[2][0]).to.eq("third");
+			expect(cbMock.args[2][3]).to.eq("#/third/value");
 		});
 	});
 
@@ -122,7 +126,8 @@ describe("query", function () {
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(1);
-			expect(cbMock.args.pop()[0].value).to.eq("last");
+			expect(cbMock.args[0][0].value).to.eq("last");
+			expect(cbMock.args[0][3]).to.eq("#/second");
 		});
 
 		it("should continue after query", function () {
@@ -138,7 +143,8 @@ describe("query", function () {
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(1);
-			expect(cbMock.args.pop()[0]).to.eq("last");
+			expect(cbMock.args[0][0]).to.eq("last");
+			expect(cbMock.args[0][3]).to.eq("#/second/value");
 		});
 	});
 
@@ -162,6 +168,7 @@ describe("query", function () {
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(6);
+			expect(cbMock.args[5][3]).to.eq("#/5/value");
 		});
 
 		it("should callback on all matched keys", function () {
@@ -181,7 +188,7 @@ describe("query", function () {
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(3);
-			expect(cbMock.args.pop()[0]).to.a.string;
+			expect(cbMock.args[2][0]).to.a.string;
 		});
 
 		it("should continue on matched globs", function () {
@@ -211,7 +218,7 @@ describe("query", function () {
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(4);
-			expect(cbMock.args.pop()[0]).to.a.string;
+			expect(cbMock.args[3][0]).to.a.string;
 		});
 	});
 });

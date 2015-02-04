@@ -73,6 +73,11 @@ To **filter** the matched objects an object-query string may be appended on each
 	query(data, "#/**?valid:!false/child", function (value, object, key) { // ...
 ```
 
+## Examples
+
+- `query(data, "#/**", callback);` will iterate over each value of the data object
+- `query(data, "#/**/*", callback);` will iterate over each leaf in the data object
+- `query(data, "#/**?valid:true", callback);` will select all objects having its property "valid" set to `true`
 
 
 
