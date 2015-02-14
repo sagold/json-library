@@ -11,4 +11,4 @@ currently includes
 between objects
 
 
-For an up to date documentation refer to the [unit tests here](./test/unit).
+For an up-to-date documentation refer to the [unit tests here](./test/unit).

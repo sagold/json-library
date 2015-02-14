@@ -87,8 +87,8 @@ module.exports = function (grunt) {
                 // webpack options
                 entry: "./lib/index.js",
                 output: {
-                    path: "release/",
-                    filename: "JsonLibrary.js",
+                    path: "dist/",
+                    filename: "JsonLibrary.min.js",
                     // libraryTarget: "var",
                     library: "JsonLibrary"
                 },
