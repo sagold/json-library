@@ -101,6 +101,15 @@ describe("filter", function () {
 		expect(result.length).to.eq(0);
 	});
 
+	it("should match regex on property names", function () {
+		var result = filter.values(obj, "{ir.*}?type:true");
+
+		expect(result.length).to.eq(1);
+		expect(result[0]).to.eq(obj.first);
+	});
+
+	describe("on array", function () {
+
 		it("should query * in array", function () {
 			var result = filter.values(arr, "*?type:true");
 
@@ -126,4 +135,5 @@ describe("filter", function () {
 			expect(result.length).to.eq(1);
 			expect(result[0].id).to.eq("second");
 		});
+	});
 });
