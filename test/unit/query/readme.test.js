@@ -72,6 +72,21 @@ describe("query", function () {
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(1);
 			expect(cbMock.args[0][0]).to.eq(data.parent.child);
-		})
+		});
+
+		it("should callback on valid elements only", function () {
+			var data = {
+				"albert": true,
+				"alfred": true,
+				"alfons": true
+			};
+
+			q.query(data, "#/{al[^b]}", cbMock);
+
+			expect(cbMock.called).to.be.true;
+			expect(cbMock.args.length).to.eq(2);
+			expect(cbMock.args[0][3]).to.eq("#/alfred");
+			expect(cbMock.args[1][3]).to.eq("#/alfons");
+		});
 	});
 });

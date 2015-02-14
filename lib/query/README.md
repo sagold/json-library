@@ -74,6 +74,37 @@ To **filter** the matched objects an object-query string may be appended on each
 	query(data, "#/**?valid:!false/child", function (value, object, key, jsonPointer) { // ...
 ```
 
+Properties may also be tested with **regular expression**, as long as **no '/'** is included:
+
+```js
+	var query = require("query").query;
+	var data = {
+		"albert": true,
+		"alfred": true,
+		"alfons": true
+	};
+	query(data, "#/{al[^b]}", function (value, object, key, jsonPointer) {
+		// will be executed with values: alfred & alfons
+	});
+```
+
+
+## queryGet
+
+If you only require values or pointers, use queryGet to receive an Array as result:
+
+```js
+	var queryGet = require("query").queryGet;
+
+	// default: queryGet.VALUES
+	var arrayOfValues = queryGet(data, "#/**/id", queryGet.VALUE);
+	// ["#/..", "#/..", ...]
+	var arrayOfJsonPointers = queryGet(data, "#/**/id", queryGet.POINTER);
+	// [arguments, arguments], where arguments = 0:value 1:object 2:key 3:jsonPointer
+	var arrayOfAllFourArguments = queryGet(data, "#/**/id", queryGet.ALL);
+```
+
+
 ## Examples
 
 - `query(data, "#/**", callback);` will iterate over each value of the data object

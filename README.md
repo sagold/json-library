@@ -9,3 +9,6 @@ currently includes
 `#/input/*?valid:true`
 - [json **relation**](./lib/relation), a relationship definition and utilities to setup and deconstruct relationships
 between objects
+
+
+For an up to date documentation refer to the [unit tests here](./test/unit).
