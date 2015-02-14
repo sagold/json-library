@@ -74,19 +74,18 @@ describe("query", function () {
 			expect(cbMock.args[0][0]).to.eq(data.parent.child);
 		});
 
-		it("should callback on valid elements only", function () {
+		it("should callback on regex and filters combined", function () {
 			var data = {
-				"albert": true,
-				"alfred": true,
-				"alfons": true
+				"albert": {valid: true},
+				"alfred": {valid: false},
+				"alfons": {valid: true}
 			};
 
-			q.query(data, "#/{al[^b]}", cbMock);
+			q.query(data, "#/{al[^b]}?valid:true", cbMock);
 
 			expect(cbMock.called).to.be.true;
-			expect(cbMock.args.length).to.eq(2);
-			expect(cbMock.args[0][3]).to.eq("#/alfred");
-			expect(cbMock.args[1][3]).to.eq("#/alfons");
+			expect(cbMock.args.length).to.eq(1);
+			expect(cbMock.args[0][3]).to.eq("#/alfons");
 		});
 	});
 });

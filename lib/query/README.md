@@ -74,17 +74,17 @@ To **filter** the matched objects an object-query string may be appended on each
 	query(data, "#/**?valid:!false/child", function (value, object, key, jsonPointer) { // ...
 ```
 
-Properties may also be tested with **regular expression**, as long as **no '/'** is included:
+**regular expression** must be wrapped with `{.*}`:
 
 ```js
 	var query = require("query").query;
 	var data = {
-		"albert": true,
-		"alfred": true,
-		"alfons": true
+		"albert": {valid: true},
+		"alfred": {valid: false},
+		"alfons": {valid: true}
 	};
-	query(data, "#/{al[^b]}", function (value, object, key, jsonPointer) {
-		// will be executed with values: alfred & alfons
+	query(data, "#/{al[^b]}?valid:true", function (value, object, key, jsonPointer) {
+		// will be executed with value: alfons
 	});
 ```
 
