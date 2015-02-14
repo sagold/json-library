@@ -221,4 +221,22 @@ describe("query", function () {
 			expect(cbMock.args[3][0]).to.a.string;
 		});
 	});
+
+	describe("regex", function () {
+
+		it("should apply {...} as regex on property names", function () {
+
+			q.query({
+				"a1": true,
+				"b1": false,
+				"a2": true,
+				"b2": false,
+			}, "#/{a.*}", cbMock);
+
+			expect(cbMock.called).to.be.true;
+			expect(cbMock.args.length).to.eq(2);
+			expect(cbMock.args[0][3]).to.eq("#/a1");
+			expect(cbMock.args[1][3]).to.eq("#/a2");
+		});
+	});
 });
