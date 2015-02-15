@@ -9,16 +9,17 @@ describe("relation.update", function () {
 
 	beforeEach(function () {
 		data = {
-
 			"articles": {
-				"latest": {
-					"title": "Each article has one content"
+				"first": {
+					"id": "first",
+					// foreign: <key>
+					// article: {}
 				}
 			},
 
 			"contents": {
-				"latest_content": {
-					"body": "latest content"
+				"current": {
+					"id": "current"
 				}
 			},
 
@@ -28,54 +29,44 @@ describe("relation.update", function () {
 
 	describe("has_one", function () {
 
-		it("should update relationships in pivot", function () {
-			var relationship = {
-				model: "#/articles",
-				type: "has_one",
-				references: "#/contents",
-				alias: "article",
-				through: "articles_contents"
-			};
-			// link latest content to article
-			data.articles.latest.article = data.contents.latest_content;
+		describe("foreign key", function () {
 
-			update(data, relationship);
+			it("should add linked object to related model", function () {
+				// link latest content to article
+				data.articles["first"].article = { "id": "new"};
+				update(data, "articles has_one:contents on:article");
 
-			expect(data["articles_contents"].latest).to.eql("latest_content");
+				expect(data.contents.first).to.eql(data.articles.first.article);
+			});
+
+			it("should replace linked model pk in foreign key", function () {
+				// link latest content to article
+				data.articles["first"].article = { "id": "new"};
+				data.articles["first"].foreign = "current";
+				update(data, "articles has_one:contents as:article on:foreign");
+
+				expect(data.articles.first.foreign).to.eql("first");
+			});
 		});
 
-		it("should update reference model and pivot table", function () {
-			var relationship = {
-				model: "#/articles",
-				type: "has_one",
-				references: "#/contents",
-				through: "articles_contents",
-				alias: "article"
-			};
-			// link latest content to article
-			data.articles.latest.article = data.contents.latest_content;
-			delete data.contents.latest_content;
+		describe("pivot table", function () {
 
-			update(data, relationship);
+			it("should replace relationships in pivot", function () {
+				// link latest content to article
+				data.articles.first.article = { "id": "new"};
+				data.articles_contents.first = "to be replaced";
+				update(data, "articles has_one:contents as:article through:articles_contents");
 
-			expect(data["articles_contents"].latest).to.eql("latest");
-			expect(data["contents"].latest).to.deep.eql(data["articles"].latest["article"]);
-		});
+				expect(data.articles_contents.first).to.eql("first");
+			});
 
-		it("should update reference model", function () {
-			var relationship = {
-				model: "#/articles",
-				type: "has_one",
-				references: "#/contents",
-				foreign_key: "article"
-			};
-			// link latest content to article
-			data.articles.latest.article = data.contents.latest_content;
-			delete data.contents.latest_content;
+			it("should add linked object to reference model", function () {
+				// link latest content to article
+				data.articles.first.article = { "id": "new"};
+				update(data, "articles has_one:contents as:article through:articles_contents");
 
-			update(data, relationship);
-
-			expect(data["contents"].latest).to.deep.eql(data["articles"].latest["article"]);
+				expect(data.contents.first).to.eql(data.articles.first.article);
+			});
 		});
 	});
 
@@ -83,7 +74,6 @@ describe("relation.update", function () {
 
 		beforeEach(function () {
 			data = {
-
 				"articles": {
 					"latest": {
 						"title": "Each article has one content"
@@ -105,54 +95,30 @@ describe("relation.update", function () {
 		});
 
 		it("should update relationships in pivot", function () {
-			var relationship = {
-				model: "#/articles",
-				type: "has_many",
-				references: "#/contents",
-				alias: "articles",
-				through: "articles_contents"
-			};
 			// link latest content to article
 			data.articles.latest.articles = [ data.contents.latest_content, data.contents.content ];
+			update(data, "articles has_many:contents as:articles through:articles_contents");
 
-			update(data, relationship);
-
-			expect(data["articles_contents"]["latest"].length).to.eql(2);
-			expect(data["articles_contents"]["latest"].indexOf("latest_content")).to.not.eql(-1);
-			expect(data["articles_contents"]["latest"].indexOf("content")).to.not.eql(-1);
+			expect(data.articles_contents.latest.length).to.eql(2);
+			expect(data.articles_contents.latest.indexOf("latest_content")).to.not.eql(-1);
+			expect(data.articles_contents.latest.indexOf("content")).to.not.eql(-1);
 		});
 
 		it("should update relationships in referenced model", function () {
-			var relationship = {
-				model: "#/articles",
-				type: "has_many",
-				references: "#/contents",
-				alias: "articles",
-				through: "articles_contents"
-			};
 			// link latest content to article
 			data.articles.latest.articles = [ data.contents.latest_content, data.contents.content ];
 			delete data.contents.latest_content;
 			delete data.contents.content;
-
-			update(data, relationship);
+			update(data, "articles has_many:contents as:articles through:articles_contents");
 
 			expect(data.contents["latest"]).to.eql(data.articles.latest.articles[0]);
 			expect(data.contents["latest-0"]).to.eql(data.articles.latest.articles[1]);
 		});
 
 		it("should update foreign_keys", function () {
-			var relationship = {
-				model: "#/articles",
-				type: "has_many",
-				references: "#/contents",
-				foreign_key: "articles_pk",
-				alias: "articles"
-			};
 			// link latest content to article
 			data.articles.latest.articles = [ data.contents.latest_content, data.contents.content ];
-
-			update(data, relationship);
+			update(data, "articles has_many:contents as:articles on:articles_pk");
 
 			expect(data.articles.latest.articles_pk.length).to.eql(2);
 			expect(data.articles.latest.articles_pk.indexOf("latest_content")).to.not.eql(-1);
