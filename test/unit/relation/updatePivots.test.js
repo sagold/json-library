@@ -1,6 +1,6 @@
 var expect = require("chai").expect;
 
-var update = require("../../../lib/relation/update");
+var update = require("../../../lib/relation/updatePivots");
 
 
 describe("relation.update", function () {
