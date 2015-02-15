@@ -43,6 +43,8 @@ A json relationship specification and implementation.
 
 ### Relationship Object
 
+**API might still change**
+
 > A Relationship Object holds all neccessary information to retrieve a related object by selection
 
 ```javascript
