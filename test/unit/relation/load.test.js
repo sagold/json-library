@@ -33,42 +33,19 @@ describe("relation.load", function () {
 		});
 
 		it("should resolve to foreign_key", function () {
-			var model,
-				defRelation = {
-					"model": "#/model",
-					"foreign_key": "related_pk",
-					"references": "#/relatedModel"
-				};
-
-			var model = load(data, defRelation);
+			var model = load(data, "model has_one:relatedModel on:related_pk");
 
 			expect(model.first.related_pk).to.eql(data.relatedModel.first);
 		});
 
 		it("should resolve to alias", function () {
-			var model,
-				defRelation = {
-					"model": "#/model",
-					"foreign_key": "related_pk",
-					"alias": "relationship",
-					"references": "#/relatedModel"
-				};
-
-			var model = load(data, defRelation);
+			var model = load(data, "model has_one:relatedModel as:relationship on:related_pk");
 
 			expect(model.first.relationship).to.eql(data.relatedModel.first);
 		});
 
 		it("should resolve by pivot table", function () {
-			var model,
-				defRelation = {
-					"model": "#/model",
-					"through": "model_relatedModel",
-					"alias": "relationship",
-					"references": "#/relatedModel"
-				};
-
-			var model = load(data, defRelation);
+			var model = load(data, "model has_one:relatedModel as:relationship through:model_relatedModel");
 
 			expect(model.first.relationship).to.eql(data.relatedModel.first);
 		});
@@ -103,31 +80,14 @@ describe("relation.load", function () {
 		});
 
 		it("should load object within foreign_key array", function () {
-			var model,
-				defRelation = {
-					"model": "#/model",
-					"foreign_key": "rel",
-					"references": "#/relatedModel",
-					"type": "has_many"
-				};
-
-			var model = load(data, defRelation);
+			var model = load(data, "model has_many:relatedModel on:rel");
 
 			expect(model.first.rel.length).to.eql(2);
 			expect(model.first.rel[1]).to.eql(data.relatedModel.third);
 		});
 
 		it ("should resolve array through pivot table", function () {
-			var model,
-				defRelation = {
-					"model": "#/model",
-					"through": "model_relatedModel",
-					"alias": "rel",
-					"references": "#/relatedModel",
-					"type": "has_many"
-				};
-
-			var model = load(data, defRelation);
+			var model = load(data, "model has_many:relatedModel as:rel through:model_relatedModel");
 
 			expect(model.first.rel.length).to.eql(2);
 			expect(model.second.rel.length).to.eql(3);
