@@ -32,13 +32,7 @@ describe("relation.unload", function () {
 		});
 
 		it("should replace linked objects with keys", function () {
-			var defRelation = {
-				"model": "#/model",
-				"references": "relatedModel",
-				"foreign_key": "rel",
-				"type": "has_many"
-			};
-
+			var defRelation = "model has_many:relatedModel on:rel";
 			var model = unload(data, defRelation);
 
 			expect(model.first.rel.length).to.eq(2);
