@@ -61,6 +61,7 @@ describe("RelationFactory", function () {
 			expect(orig.person.alfred).to.deep.eq(data.person.alfred);
 		});
 
+		// update
 
 		// add
 		// remove
@@ -128,6 +129,8 @@ describe("RelationFactory", function () {
 
 			expect(data.person.alfred.face).to.eq("big");
 		});
+
+		// update
 
 		// add
 		// remove
@@ -200,6 +203,8 @@ describe("RelationFactory", function () {
 
 			expect(data.person_nose.alfred).to.eq("big");
 		});
+
+		// update
 
 		// add
 		// remove
@@ -278,6 +283,8 @@ describe("RelationFactory", function () {
 			expect(data.person.alfred.ears[1]).to.eq("big");
 		});
 
+		// update
+
 		// add
 		// remove
 		// insert
@@ -355,6 +362,8 @@ describe("RelationFactory", function () {
 			expect(data.person.alfred.ears[1]).to.eq("big");
 		});
 
+		// update
+
 		// add
 		// remove
 		// insert
@@ -429,6 +438,8 @@ describe("RelationFactory", function () {
 			expect(data.person_ears.alfred.length).to.eq(1);
 			expect(data.person_ears.alfred[0]).to.eq("big");
 		});
+
+		// update
 
 		// add
 		// remove
