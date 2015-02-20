@@ -107,19 +107,6 @@ describe("relation.unload", function () {
 			expect(model.first.rel).to.eq("second");
 		});
 
-		it("should replace linked object through pivot table", function () {
-			var defRelation = {
-				"model": "#/model",
-				"references": "relatedModel",
-				"through": "model_relatedModel",
-				"alias": "rel"
-			};
-
-			var model = unload(data, defRelation);
-
-			expect(model.first.rel).to.eq("second");
-		});
-
 		it("should remove alias completely", function () {
 			var defRelation = {
 				"model": "#/model",
