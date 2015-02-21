@@ -1,6 +1,6 @@
 # Json Relation
 
-This is a basic *json relationship* implementation following the minimal [specification](./specification)
+This is a basic *json relationship* implementation following the minimal [specification]("./specification")
 
 A json relationship is established by
 
@@ -66,7 +66,7 @@ to
 ```
 
 For further details and examples check [createDefinitionObject](./createDefinitionObject.js) and the [unit tests
-for *Relationship*]("../../test/unit/relation/Relationship.test.js")
+]("../../test/unit/relation/")
 
 
 ### Relationship Definition
