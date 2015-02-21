@@ -110,13 +110,45 @@ module.exports = function (grunt) {
                 watch: false, // use webpacks watcher
                 // You need to keep the grunt process alive
                 keepalive: false, // don't finish the grunt task
-                // module: {
-                //     loaders: [
-                //         {
-                //             test: /.*\.js$/, loader: "uglify"
-                //         }
-                //     ]
-                // }
+                plugins: [
+                    new webpack.optimize.UglifyJsPlugin({
+                        compress: {
+                            drop_console: true
+                        }
+                    })
+                ]
+            },
+
+            "distPointer": {
+                entry: "./lib/pointer/index.js",
+                output: {
+                    path: "dist/",
+                    filename: "JsonLibrary.pointer.min.js",
+                    library: "JsonPointer"
+                },
+                stats: {colors: false, modules: true, reasons: true },
+                failOnError: true,
+                watch: false,
+                keepalive: false,
+                plugins: [
+                    new webpack.optimize.UglifyJsPlugin({
+                        compress: {
+                            drop_console: true
+                        }
+                    })
+                ]
+            },
+            "distQuery": {
+                entry: "./lib/query/index.js",
+                output: {
+                    path: "dist/",
+                    filename: "JsonLibrary.query.min.js",
+                    library: "JsonQuery"
+                },
+                stats: {colors: false, modules: true, reasons: true },
+                failOnError: true,
+                watch: false,
+                keepalive: false,
                 plugins: [
                     new webpack.optimize.UglifyJsPlugin({
                         compress: {
@@ -131,12 +163,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-webpack');
-    // grunt.loadNpmTasks('grunt-notify');
 
     // testing
     grunt.registerTask('test', "mochaTest");
     grunt.registerTask('tdd', 'watch');
     // build
     grunt.registerTask('build', 'webpack:build');
-    grunt.registerTask('dist', ['test', 'webpack:dist']);
+    grunt.registerTask('dist', ['test', 'webpack:dist', 'webpack:distPointer', 'webpack:distQuery']);
 };
