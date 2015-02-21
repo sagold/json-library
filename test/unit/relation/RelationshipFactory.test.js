@@ -10,6 +10,7 @@ describe("RelationFactory", function () {
 
 	var data, relation;
 
+
 	describe("has_one:foreign_key", function () {
 
 		beforeEach(function () {

@@ -1,62 +1,78 @@
 # Json Relation
 
-A json relationship specification and implementation.
+This is a basic *json relationship* implementation following the minimal [specification](./specification)
+
+A json relationship is established by
+
+```js
+	var Relationship = require("json-library").relation.Relationship;
+	var relation = new Relationship(data, relationshipDefinition);
+```
+
+The main function of a relationship is to
+
+- *load* one or all related tupels specified in foreign keys or pivot table to its parent tupel
+- *update* the pivot table or foreign keys of one or all tupels
+- *unload* reverse one or all established relations
 
 
-## Specification #v0.1
+## Usage
 
-> A Json Relation defines a relationship of two Json Models
+The following example
 
-**Axiom** A relationship must be resolvable through selection only
+```js
+	var Relationship = require("json-library").relation.Relationship;
 
-**Korollar** the related Tupel must be given by its primary_key
+	var relation = new Relationship(data, "parent has_one:child through:parent_children as:workload");
+	relation.loadAll();
+```
 
-**Korollar** pivot-tables are uni-directional
+will change the json object
 
-
-### Json Model
-
-> A Json Model (relation) is an object or array containing items (tupels) associated with a primary_key. Each tupel consists of tupel-properties (atttributes).
-
-### primary_key
-
-> A primary_key is given as an object-property or array-index:
-
-```javascript
-// Object-Model:
-{
-	// primary_key (entry) for following Tupel
-	"entry": {
-		// Attributes
-		"name": "name of tupel"
-	}
-}
-// Array-Model:
-[
-	// primary_key (0) for following Tupel
+```js
 	{
-		// Attributes
-		"name": "name of tupel"
+		parent: {
+			p_01: {},
+			p_02: {},
+		},
+		child: {
+			c_01: {id: "c_01"},
+			c_02: {id: "c_02"}
+		},
+		parent_children: {
+			p_01: ["c_02", "c_01"],
+			p_01: ["c_01"]
+		}
 	}
-]
 ```
 
-### Relationship Object
+to
 
-**API might still change**
-
-> A Relationship Object holds all neccessary information to retrieve a related object by selection
-
-```javascript
-{
-	"alias": <name>:optional, // defaults to <reference>
-	"model": <json/pointer/to/model>,
-	"foreign_key": <property-holding-references-pk>,
-	"type": <"has_one" | "has_many" | "belongs_to">,
-	"references": <json/pointer/to/target-model>,
-	"through": <json/pointer/to/pivot-table>:optional
-}
+```js
+	{
+		parent: {
+			p_01: {
+				workload: [
+					{id: "c_02"},
+					{id: "c_01"}
+				]
+			},
+			p_02: {
+				workload: [
+					{id: "c_01"}
+				]
+			}
+		...
 ```
 
+For further details and examples check [createDefinitionObject](./createDefinitionObject.js) and the [unit tests
+for *Relationship*]("../../test/unit/relation/RelationshipFactory.test.js")
+
+
+### Relationship Definition
+
+A relationship object may be also created by: `"[model] [[type]:[related] [mapping]:[path] (as:[alias])]"`. Using
+`createDefinitionObject(string)` a valid relationship Object is retrieved. For details see
+[createDefinitionObject]("./createDefinitionObject.js")
 
 
