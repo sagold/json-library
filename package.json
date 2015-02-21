@@ -3,9 +3,10 @@
   "version": "0.0.6",
   "description": "A range of json, json pointer, json schema and json relationship utility functions",
   "main": "lib",
-  "private": false,
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "dist": "grunt dist",
+    "build": "grunt build"
   },
   "author": "Sascha Goldhofer",
   "license": "MIT",
