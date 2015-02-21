@@ -36,4 +36,18 @@ describe("getPrimaryKey", function () {
 
 		expect(pk).to.eq("a_2");
 	});
+
+	it("should return index of tupel", function () {
+		var tupel = {"id": "tupel"};
+		var pk = getPrimaryKey([{}, tupel], tupel, "default");
+
+		expect(pk).to.eq(1);
+	});
+
+	it("should return array length for new tupel", function () {
+		var tupel = {"id": "tupel"};
+		var pk = getPrimaryKey([{}, {}, {}], tupel, "default");
+
+		expect(pk).to.eq(3);
+	});
 });
