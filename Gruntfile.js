@@ -156,6 +156,25 @@ module.exports = function (grunt) {
                         }
                     })
                 ]
+            },
+            "distBase": {
+                entry: "./lib/base.js",
+                output: {
+                    path: "dist/",
+                    filename: "JsonLibrary.base.min.js",
+                    library: "JsonLibrary"
+                },
+                stats: {colors: false, modules: true, reasons: true },
+                failOnError: true,
+                watch: false,
+                keepalive: false,
+                plugins: [
+                    new webpack.optimize.UglifyJsPlugin({
+                        compress: {
+                            drop_console: true
+                        }
+                    })
+                ]
             }
         }
     });
@@ -169,5 +188,5 @@ module.exports = function (grunt) {
     grunt.registerTask('tdd', 'watch');
     // build
     grunt.registerTask('build', 'webpack:build');
-    grunt.registerTask('dist', ['test', 'webpack:dist', 'webpack:distPointer', 'webpack:distQuery']);
+    grunt.registerTask('dist', ['test', 'webpack:dist', 'webpack:distBase', 'webpack:distPointer', 'webpack:distQuery']);
 };
