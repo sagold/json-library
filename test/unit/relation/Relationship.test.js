@@ -3,7 +3,7 @@
 var expect = require("chai").expect;
 
 var o = require("../../../lib/object"),
-	Relation = require("../../../lib/relation/RelationshipFactory");
+	Relation = require("../../../lib/relation/Relationship");
 
 
 describe("RelationFactory", function () {

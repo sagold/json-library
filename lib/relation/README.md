@@ -66,7 +66,7 @@ to
 ```
 
 For further details and examples check [createDefinitionObject](./createDefinitionObject.js) and the [unit tests
-for *Relationship*]("../../test/unit/relation/RelationshipFactory.test.js")
+for *Relationship*]("../../test/unit/relation/Relationship.test.js")
 
 
 ### Relationship Definition
