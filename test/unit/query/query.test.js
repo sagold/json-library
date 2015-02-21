@@ -31,7 +31,7 @@ describe("query", function () {
 		expect(cbMock.args[0][0].value).to.eq("text");
 	});
 
-	it("should callback with value, object, key and pointer", function () {
+	it("should callback with value, key, object and pointer", function () {
 
 		q.query({
 			"first": {
@@ -40,8 +40,8 @@ describe("query", function () {
 		}, "/first", cbMock);
 
 		expect(cbMock.args[0][0].value).to.eq("text");
-		expect(cbMock.args[0][1].first.value).to.eq("text");
-		expect(cbMock.args[0][2]).to.eq("first");
+		expect(cbMock.args[0][1]).to.eq("first");
+		expect(cbMock.args[0][2].first.value).to.eq("text");
 		expect(cbMock.args[0][3]).to.eq("#/first");
 	});
 
