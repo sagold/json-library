@@ -587,9 +587,7 @@ describe("RelationFactory", function () {
 			expect(data.person_ears.alfred[0]).to.eq("big");
 		});
 
-		// update "person has_many:ears as:ears through:person_ears"
-
-		// add
+		// add "person has_many:ears as:ears through:person_ears"
 		// remove
 		// insert
 		// delete
