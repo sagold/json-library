@@ -66,7 +66,7 @@ to
 ```
 
 For further details and examples check [createDefinitionObject](./createDefinitionObject.js) and the [unit tests
-]("../../test/unit/relation/")
+]("https://github.com/sagold/json-library/tree/master/test/unit/relation/")
 
 
 ### Relationship Definition
