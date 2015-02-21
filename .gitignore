@@ -4,3 +4,4 @@ json.sublime-project
 json.sublime-workspace
 test/log
 build
+bower_components
