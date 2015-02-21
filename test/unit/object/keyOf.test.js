@@ -1,8 +1,8 @@
 "use strict";
 
 var expect = require("chai").expect;
-
 var o = require("../../../lib/object");
+
 
 describe("object.keyOf", function () {
 
@@ -26,5 +26,16 @@ describe("object.keyOf", function () {
 		var key = o.keyOf(data, {});
 
 		expect(key).to.be.null;
+	});
+
+	it("should return index of needle", function () {
+		var data = [
+			{"name": "first"},
+			{"name": "second"}
+		];
+
+		var key = o.keyOf(data, data[1]);
+
+		expect(key).to.eql(1);
 	});
 });
