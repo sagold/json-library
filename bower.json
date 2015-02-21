@@ -4,7 +4,6 @@
   "description": "A range of json, json pointer, json schema and json relationship utility functions",
   "main": "dist/JsonLibrary.min.js",
   "ignore": [
-    ".*",
     "test",
     "status.png",
     "Gruntfile.js",
