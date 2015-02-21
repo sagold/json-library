@@ -10,7 +10,6 @@ describe("RelationFactory", function () {
 
 	var data, relation;
 
-
 	describe("has_one:foreign_key", function () {
 
 		beforeEach(function () {
@@ -72,12 +71,6 @@ describe("RelationFactory", function () {
 
 			expect(orig.person.alfred).to.deep.eq(data.person.alfred);
 		});
-
-		// add
-		// remove
-		// insert
-		// delete
-
 	});
 
 
@@ -166,13 +159,6 @@ describe("RelationFactory", function () {
 
 			expect(data.person.alfred.face).to.eq("big");
 		});
-
-		// update
-
-		// add
-		// remove
-		// insert
-		// delete
 	});
 
 
@@ -269,11 +255,6 @@ describe("RelationFactory", function () {
 
 			expect(data.person_nose.alfred).to.eq("big");
 		});
-
-		// add
-		// remove
-		// insert
-		// delete
 	});
 
 
@@ -374,11 +355,6 @@ describe("RelationFactory", function () {
 			expect(data.person.alfred.ears[0]).to.eq("broad");
 			expect(data.person.alfred.ears[1]).to.eq("big");
 		});
-
-		// add
-		// remove
-		// insert
-		// delete
 	});
 
 
@@ -480,11 +456,6 @@ describe("RelationFactory", function () {
 			expect(data.person.alfred.ears[0]).to.eq("broad");
 			expect(data.person.alfred.ears[1]).to.eq("big");
 		});
-
-		// add "person has_many:ears as:feet on:ears"
-		// remove
-		// insert
-		// delete
 	});
 
 
@@ -586,10 +557,48 @@ describe("RelationFactory", function () {
 			expect(data.person_ears.alfred.length).to.eq(1);
 			expect(data.person_ears.alfred[0]).to.eq("big");
 		});
+	});
 
-		// add "person has_many:ears as:ears through:person_ears"
-		// remove
-		// insert
-		// delete
+
+	describe("all", function () {
+
+		beforeEach(function () {
+			data = {
+				"person": {
+					"hans": { "fpk": "square" },
+					"alfred": { "fpk": "large" }
+				},
+				"nose": {
+					"square": { "id": "square" },
+					"large": { "id": "large" }
+				}
+			};
+			// create relationship
+			relation = new Relation(data, "person has_one:nose as:nose on:fpk");
+		});
+
+		it("should load all tupels", function () {
+			relation.loadAll();
+
+			expect(data.person.hans.nose.id).to.eq("square");
+			expect(data.person.alfred.nose.id).to.eq("large");
+		});
+
+		it("should unload all tupels", function () {
+			var orig = o.copy(data);
+			relation.loadAll();
+			relation.unloadAll();
+
+			expect(orig).to.deep.eq(data);
+		});
+
+		it("should update all tupels", function () {
+			data.person.hans.nose = data.nose.large;
+			data.person.alfred.nose = data.nose.square;
+			relation.updateAll();
+
+			expect(data.person.hans.fpk).to.eq("large");
+			expect(data.person.alfred.fpk).to.eq("square");
+		});
 	});
 });
