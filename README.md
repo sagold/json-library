@@ -12,3 +12,7 @@ between objects
 
 
 For an up-to-date documentation refer to the [unit tests here]("https://github.com/sagold/json-library/tree/master/test/unit").
+
+# Installation
+
+Either use via bower: `bower install json-library` or npm: `npm install json-library`
