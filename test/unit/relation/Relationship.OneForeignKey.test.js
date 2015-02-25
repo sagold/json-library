@@ -2,7 +2,8 @@
 
 var expect = require("chai").expect;
 
-var o = require("../../../lib/object"),
+var json = require("../../../lib/json"),
+	o = require("../../../lib/object"),
 	Relation = require("../../../lib/relation/Relationship");
 
 
@@ -65,7 +66,7 @@ describe("has_one:foreign_key", function () {
 	// unload
 
 	it("should reverse load", function () {
-		var orig = o.copy(data);
+		var orig = json.copy(data);
 		relation.load("alfred");
 		relation.unload("alfred");
 

@@ -2,7 +2,7 @@
 
 var expect = require("chai").expect;
 
-var o = require("../../../lib/object"),
+var json = require("../../../lib/json"),
 	Relation = require("../../../lib/relation/Relationship");
 
 
@@ -37,7 +37,7 @@ describe("RelationFactory", function () {
 		});
 
 		it("should unload all tupels", function () {
-			var orig = o.copy(data);
+			var orig = json.copy(data);
 			relation.loadAll();
 			relation.unloadAll();
 
