@@ -1,6 +1,6 @@
 # json library
 
-A range of utility modules and functions to work with json or js objects
+A range of utility modules and functions to work with json or js objects.
 
 currently includes
 
@@ -16,12 +16,12 @@ For an up-to-date documentation refer to the [unit tests here]("https://github.c
 
 ## Contents
 
-- [Installation](Installation)
-- [Usage](Usage)
-- [Why](Why)
-	- [JsonPointer](JsonPointer)
-	- [JsonQuery](JsonQuery)
-	- [JsonRelation](JsonRelation)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Why](#why)
+	- [JsonPointer](#jsonpointer)
+	- [JsonQuery](#jsonquery)
+	- [JsonRelation](#jsonrelation)
 
 
 ## Installation
@@ -87,11 +87,15 @@ For further details check [query README](https://github.com/sagold/json-library/
 	JSON.stringify(data); // throws
 ```
 
-### json
+### relationship
 
 ```js
 	// too complex?
 ```
 
+
 ## Why
+
+Intentions and usage examples
+
 
