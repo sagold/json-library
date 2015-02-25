@@ -11,7 +11,7 @@ currently includes
 between objects
 
 
-For an up-to-date documentation refer to the [unit tests here]("https://github.com/sagold/json-library/tree/master/test/unit").
+For an up-to-date documentation refer to the [unit tests]("https://github.com/sagold/json-library/tree/master/test/unit").
 
 
 ## Contents
@@ -50,13 +50,13 @@ For a full API see [lib README](https://github.com/sagold/json-library/tree/mast
 ### pointer
 
 ```js
-	var pointer = require("json-library").pointer;
-	// get value of data at json pointer
-	var value = pointer.get({"a":{"b"}:[{"id":"target"}]}, "#/a/b/0/id"); // target
-	// add properties by pointer on data
-	var object = pointer.set({}, "#/a/b/[0]/id", "target"); // {"a":{"b"}:[{"id":"target"}]}
-	// join arguments to a valid json pointer
-	var pointerToTarget = pointer.join("#/a", "#/b", "/0/", "target"); // #/a/b/0/target
+var pointer = require("json-library").pointer;
+// get value of data at json pointer
+var value = pointer.get({"a":{"b"}:[{"id":"target"}]}, "#/a/b/0/id"); // target
+// add properties by pointer on data
+var object = pointer.set({}, "#/a/b/[0]/id", "target"); // {"a":{"b"}:[{"id":"target"}]}
+// join arguments to a valid json pointer
+var pointerToTarget = pointer.join("#/a", "#/b", "/0/", "target"); // #/a/b/0/target
 ```
 
 For further details check [pointer README](https://github.com/sagold/json-library/tree/master/lib/pointer)
@@ -65,17 +65,17 @@ For further details check [pointer README](https://github.com/sagold/json-librar
 ### query
 
 ```js
-	var query = require("json-library").query;
-	// call on each match of the query's matches
-	query.query(data,
-		"#/pointer/{regex.*}/**/*?property:hasValue||property:otherValue",
-		function (value, key, parentObejct, jsonPointer) {
-		});
-	// return all json pointers of query matches
-	var matches = query.query(data,
-		"#/pointer/{^regex.*}/**/*?property:hasValue||property:otherValue",
-		query.queryGet.POINTER
-	);
+var query = require("json-library").query;
+// call on each match of the query's matches
+query.query(data,
+	"#/pointer/{regex.*}/**/*?property:hasValue||property:otherValue",
+	function (value, key, parentObejct, jsonPointer) {
+	});
+// return all json pointers of query matches
+var matches = query.query(data,
+	"#/pointer/{^regex.*}/**/*?property:hasValue||property:otherValue",
+	query.queryGet.POINTER
+);
 ```
 
 For further details check [query README](https://github.com/sagold/json-library/tree/master/lib/query)
@@ -86,11 +86,11 @@ For further details check [query README](https://github.com/sagold/json-library/
 #### circular dependencies
 
 ```js
-	var json = require("json-library").json;
-	// stringify data containing circular dependencies
-	var circularJsonString = json.stringify(circularData, null, pretty);
-	var data = json.parse(circularJsonString);
-	JSON.stringify(data); // throws
+var json = require("json-library").json;
+// stringify data containing circular dependencies
+var circularJsonString = json.stringify(circularData, null, pretty);
+var data = json.parse(circularJsonString);
+JSON.stringify(data); // throws
 ```
 
 ### relationship
