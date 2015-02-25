@@ -2,8 +2,8 @@
 
 var expect = require("chai").expect;
 var constants = require("../../../lib/object/constants"),
-	jsonParseCircular = require("../../../lib/object").jsonParseCircular,
-	jsonStringifyCircular = require("../../../lib/object").jsonStringifyCircular;
+	jsonParseCircular = require("../../../lib/object").stringify,
+	jsonStringifyCircular = require("../../../lib/json").parse;
 
 
 describe("jsonParseCircular", function () {

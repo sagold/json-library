@@ -1,7 +1,7 @@
 "use strict";
 
 var expect = require("chai").expect;
-var jsonStringifyCircular = require("../../../lib/object").jsonStringifyCircular;
+var jsonStringifyCircular = require("../../../lib/json").stringify;
 
 
 describe("jsonStringifyCircular", function () {
