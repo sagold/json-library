@@ -1,6 +1,7 @@
 "use strict";
 
-var expect = require("chai").expect;
+var expect = require("chai").expect,
+	sinon = require("sinon");
 
 var json = require("../../../lib/json"),
 	o = require("../../../lib/object"),
@@ -94,5 +95,50 @@ describe("has_one:foreign_key:alias", function () {
 		relation.unload("alfred");
 
 		expect(data.person.alfred.face).to.eq("big");
+	});
+
+	// link
+
+	it("should add tupel on the given model", function () {
+		var tupel = {id: "new tupel"};
+		relation.link("alfred", tupel);
+
+		expect(data.person.alfred.nose).to.eq(tupel);
+	});
+
+	it("should create model if it does not exist", function () {
+		var tupel = {id: "new tupel"};
+		relation.link("alfons", tupel);
+
+		expect(data.person.alfons.nose).to.eq(tupel);
+	});
+
+	it("should call update on link", function () {
+		var update = sinon.spy(relation, "update");
+		relation.link("alfred", true);
+
+		expect(update.called).to.be.true;
+	});
+
+	// unlink
+
+	it("should remove related tupel", function () {
+		relation.unlink("alfred");
+
+		expect(data.person.alfred.nose).to.be.undefined;
+	});
+
+	it("should call update on unlink", function () {
+		var update = sinon.spy(relation, "update");
+		relation.unlink("alfred");
+
+		expect(update.called).to.be.true;
+	});
+
+	it("should unlink only given tupel if passed", function () {
+		relation.loadAll();
+		relation.unlink("alfred", data.nose.big);
+
+		expect(data.person.alfred.nose).to.eq(data.nose.large);
 	});
 });

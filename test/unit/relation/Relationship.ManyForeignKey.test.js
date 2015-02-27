@@ -1,6 +1,7 @@
 "use strict";
 
-var expect = require("chai").expect;
+var expect = require("chai").expect,
+	sinon = require("sinon");
 
 var json = require("../../../lib/json"),
 	o = require("../../../lib/object"),
@@ -90,7 +91,6 @@ describe("has_many:foreign_key", function () {
 
 	it("should reverse load", function () {
 		var orig = json.copy(data);
-		var relation = new Relation(data, "person has_many:ears on:ears");
 		relation.load("alfred");
 		relation.unload("alfred");
 
@@ -98,12 +98,49 @@ describe("has_many:foreign_key", function () {
 	});
 
 	it("should update foreign keys on unload", function () {
-		var relation = new Relation(data, "person has_many:ears on:ears");
 		data.person.alfred.ears[0] = data.ears.broad;
 		relation.unload("alfred");
 
 		expect(data.person.alfred.ears.length).to.eq(2);
 		expect(data.person.alfred.ears[0]).to.eq("broad");
 		expect(data.person.alfred.ears[1]).to.eq("big");
+	});
+
+	// link
+
+	it("should add tupel to relations", function () {
+		var tupel = {id: "new tupel"};
+		relation.link("alfred", tupel);
+
+		expect(data.person.alfred.ears.pop()).to.eq(tupel);
+	});
+
+	it("should create missing parent tupel", function () {
+		var tupel = {id: "new tupel"};
+		relation.link("alfons", tupel);
+
+		expect(data.person.alfons.ears[0]).to.eq(tupel);
+	});
+
+	it("should call update on link", function () {
+		var update = sinon.spy(relation, "update");
+		relation.link("alfons", true);
+
+		expect(update.called).to.true;
+	});
+
+	// unlink
+
+	it("should remove related tupel", function () {
+		relation.unlink("alfred", "large");
+
+		expect(data.person.alfred.ears).to.not.contain("large");
+	});
+
+	it("should call update after removing tupel", function () {
+		var update = sinon.spy(relation, "update");
+		relation.unlink("alfred", "large");
+
+		expect(update.called).to.be.true;
 	});
 });

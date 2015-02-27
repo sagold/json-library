@@ -1,6 +1,7 @@
 "use strict";
 
-var expect = require("chai").expect;
+var expect = require("chai").expect,
+	sinon = require("sinon");
 
 var json = require("../../../lib/json"),
 	o = require("../../../lib/object"),
@@ -107,5 +108,45 @@ describe("has_many:foreign_key:alias", function () {
 		expect(data.person.alfred.ears.length).to.eq(2);
 		expect(data.person.alfred.ears[0]).to.eq("broad");
 		expect(data.person.alfred.ears[1]).to.eq("big");
+	});
+
+	// link
+
+	it("should add tupel to relations", function () {
+		var tupel = {id: "new tupel"};
+		relation.link("alfred", tupel);
+
+		expect(data.person.alfred.feet).to.contain(tupel);
+	});
+
+	it("should create missing parent tupel", function () {
+		var tupel = {id: "new tupel"};
+		relation.link("alfons", tupel);
+
+		expect(data.person.alfons.feet).to.contain(tupel);
+	});
+
+	it("should call update on link", function () {
+		var update = sinon.spy(relation, "update");
+		relation.link("alfred", true);
+
+		expect(update.called).to.true;
+	});
+
+	// unlink
+
+	it("should remove related tupel", function () {
+		relation.loadAll();
+		relation.unlink("alfred", data.ears.large);
+
+		expect(data.person.alfred.feet).to.not.contain(data.ears.large);
+	});
+
+	it("should call update after removing tupel", function () {
+		var update = sinon.spy(relation, "update");
+		relation.loadAll();
+		relation.unlink("alfred", data.ears.large);
+
+		expect(update.called).to.be.true;
 	});
 });
