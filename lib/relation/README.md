@@ -15,6 +15,12 @@ The main function of a relationship is to
 - *update* the pivot table or foreign keys of one or all tupels
 - *unload* reverse one or all established relations
 
+A relationship instance also includes helpers to
+
+- *loadAll*, *updateAll* and *unloadAll* relationships
+- *link* a new object to a tupel and
+- *unlink* the given object from a tupel
+
 
 ## Usage
 
