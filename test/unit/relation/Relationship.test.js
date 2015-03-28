@@ -6,13 +6,12 @@ var json = require("../../../lib/json"),
 	Relation = require("../../../lib/relation/Relationship");
 
 
-describe("RelationFactory", function () {
+describe("Relationship", function () {
 
 	var data, relation;
 
 
-	// !all
-	describe("all", function () {
+	describe("", function () {
 
 		beforeEach(function () {
 			data = {
@@ -51,6 +50,13 @@ describe("RelationFactory", function () {
 
 			expect(data.person.hans.fpk).to.eq("large");
 			expect(data.person.alfred.fpk).to.eq("square");
+		});
+
+		it("should create missing models", function () {
+			new Relation(data, "person has_many:noses as:fpk through:persons_noses", true);
+
+			expect(data.noses).to.be.an.instanceOf(Object);
+			expect(data.persons_noses).to.be.an.instanceOf(Object);
 		});
 	});
 
