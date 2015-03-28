@@ -5,7 +5,7 @@ var expect = require("chai").expect;
 var queryGet = require("../../../lib/query").queryGet;
 
 
-describe.only("queryGet", function () {
+describe("queryGet", function () {
 
 	var data = {
 		"a": {
