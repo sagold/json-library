@@ -1,6 +1,7 @@
-var expect = require("chai").expect;
 
+var expect = require("chai").expect;
 var q = require("../../../lib/query");
+
 
 describe("query", function () {
 
@@ -11,7 +12,7 @@ describe("query", function () {
 		cbMock = function cbMock(value) {
 			cbMock.args.push(arguments);
 			cbMock.called = true;
-		}
+		};
 
 		cbMock.called = false;
 		cbMock.args = [];
@@ -151,6 +152,26 @@ describe("query", function () {
 	describe("**", function () {
 
 		it("should callback on all keys", function () {
+
+			q.query({
+				"1": {
+					"value": "2",
+					"3": {
+						"value": "4"
+					}
+				},
+				"5": {
+					"value": "6"
+				}
+
+			}, "/**/*", cbMock);
+
+			expect(cbMock.called).to.be.true;
+			expect(cbMock.args.length).to.eq(6);
+			expect(cbMock.args[5][3]).to.eq("#/5/value");
+		});
+
+		it("should callback on all keys, even without /*", function () {
 
 			q.query({
 				"1": {
