@@ -1,7 +1,7 @@
 node_modules
 status.png
-json.sublime-project
-json.sublime-workspace
 test/log
 build
 bower_components
+*.sublime-workspace
+*.sublime-project

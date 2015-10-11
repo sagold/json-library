@@ -2,7 +2,6 @@ var expect = require("chai").expect;
 
 var q = require("../../../lib/query");
 
-
 describe("query", function () {
 
 	var cbMock;
