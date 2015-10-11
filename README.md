@@ -69,7 +69,7 @@ var query = require("json-library").query;
 // call on each match of the query's matches
 query.query(data,
 	"#/pointer/{regex.*}/**/*?property:hasValue||property:otherValue",
-	function (value, key, parentObejct, jsonPointer) {
+	function (value, key, parentObject, jsonPointer) {
 	});
 // return all json pointers of query matches
 var matches = query.query(data,
