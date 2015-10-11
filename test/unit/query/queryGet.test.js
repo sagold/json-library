@@ -2,7 +2,7 @@
 
 
 var expect = require("chai").expect;
-var queryGet = require("../../../lib/query").queryGet;
+var queryGet = require("../../../lib/query").get;
 
 
 describe("queryGet", function () {
