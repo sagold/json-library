@@ -95,13 +95,9 @@ JSON.stringify(data); // throws
 
 ### relationship
 
-```js
-	// too complex?
-```
-
-
-## Why
-
-Intentions and usage examples
-
+A json relationship defines `1:1`, `1:n` or `n:n` relationships between models (json values). This utility will work
+non-destructibly on objects or may export transformed relation data. This is very useful for building different
+relationships based on a single flat hierarchy (normalized data). Furthermore, relationships are useful for
+transforming data. Some Details can be found in
+[relation README](https://github.com/sagold/json-library/tree/master/lib/relation)
 
