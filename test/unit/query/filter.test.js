@@ -70,13 +70,6 @@ describe("filter", function () {
 		expect(result[0]).to.eq(obj.first);
 	});
 
-	// it.only("should return objects with type defined", function () {
-	// 	var result = filter.values(arr, "*?type!null");
-	// 	console.log(result);
-	// 	expect(result.length).to.eq(2);
-	// 	expect(result[1]).to.eq(arr[1]);
-	// });
-
 	it("should return empty array if nothing found", function () {
 		var result = filter.values(obj, "*?type:false");
 

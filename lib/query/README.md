@@ -107,8 +107,7 @@ If you only require values or pointers, use queryGet to receive an Array as resu
 
 ## Examples
 
-- `query(data, "#/**", callback);` will iterate over each value of the data object
-- `query(data, "#/**/*", callback);` will iterate over each leaf in the data object
+- `query(data, "#/**/*", callback);` will iterate over each value of the data object
 - `query(data, "#/**?valid:true", callback);` will select all objects having its property "valid" set to `true`
 
 
