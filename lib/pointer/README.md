@@ -32,6 +32,13 @@ may also be used to apply values on an object:
 	console.log(data.parent.children.length); // 2
 ```
 
+or to delete properties or array items
+
+```js
+	pointer.delete(data, "#/parent/arrayOrObject/1");
+```
+
+
 ## Helpers
 
 `pointer.join` joins all arguments to a valid json pointer:
