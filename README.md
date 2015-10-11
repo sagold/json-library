@@ -55,11 +55,13 @@ var pointer = require("json-library").pointer;
 var value = pointer.get({"a":{"b"}:[{"id":"target"}]}, "#/a/b/0/id"); // target
 // add properties by pointer on data
 var object = pointer.set({}, "#/a/b/[0]/id", "target"); // {"a":{"b"}:[{"id":"target"}]}
+// delete properties or items
+var object = pointer.delete({"a":{"b"}:[{"id":"target"}]}, "#/a/b/0"); // {"a":{"b"}:[]}
 // join arguments to a valid json pointer
 var pointerToTarget = pointer.join("#/a", "#/b", "/0/", "target"); // #/a/b/0/target
 ```
 
-For further details check [pointer README](https://github.com/sagold/json-library/tree/master/lib/pointer)
+For further details and functions check [pointer README](https://github.com/sagold/json-library/tree/master/lib/pointer)
 
 
 ### query
@@ -78,7 +80,7 @@ var matches = query.query(data,
 );
 ```
 
-For further details check [query README](https://github.com/sagold/json-library/tree/master/lib/query)
+For further details and functions check [query README](https://github.com/sagold/json-library/tree/master/lib/query).
 
 
 ### json
