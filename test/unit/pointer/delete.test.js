@@ -23,10 +23,26 @@ describe("pointer.delete", function () {
 		expect(result.a).to.be.undefined;
 	});
 
+	it("should return input for empty pointer", function () {
+		var data = {a: {b: {}, c: {}}};
+		var result = pointer.delete(JSON.parse(JSON.stringify(data)), "");
+
+		expect(result).deep.equal(data);
+	});
+
 	it("should delete nested property only", function () {
 		var result = pointer.delete({a: {b: {}, c: {}}}, "#/a/b");
 
 		expect(result.a.b).to.be.undefined;
 		expect(result.a.c).to.be.instanceOf(Object);
+	});
+
+	describe("array", function () {
+
+		it("should delete item in array", function () {
+			var result = pointer.delete({ array: [0, 1, 2] }, "#/array/0");
+
+			expect(result.array).to.have.length(2);
+		});
 	});
 });
