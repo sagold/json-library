@@ -91,18 +91,6 @@ For further details and `query.get` and `query.delete` check
 [query README](https://github.com/sagold/json-library/tree/master/lib/query).
 
 
-### json
-
-#### circular dependencies
-
-```js
-var json = require("json-library").json;
-// stringify data containing circular dependencies
-var circularJsonString = json.stringify(circularData, null, pretty);
-var data = json.parse(circularJsonString);
-JSON.stringify(data); // throws
-```
-
 ### relationship
 
 A json relationship defines `1:1`, `1:n` or `n:n` relationships between models (json values). This utility will work
