@@ -121,5 +121,11 @@ Multiple items on objects or in arrays may also be delete with query.delete:
 - `query(data, "#/**/*", callback);` will iterate over each value of the data object
 - `query(data, "#/**?valid:true", callback);` will select all objects having its property "valid" set to `true`
 
+for further examples refer to the unit tests
+
+- [query.delete](https://github.com/sagold/json-library/blob/master/test/unit/query/queryDelete.test.js)
+- [query.get](https://github.com/sagold/json-library/blob/master/test/unit/query/queryGet.test.js)
+- [query.query](https://github.com/sagold/json-library/blob/master/test/unit/query/query.test.js)
+
 
 

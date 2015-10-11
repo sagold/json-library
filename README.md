@@ -4,11 +4,15 @@ A range of utility modules and functions to work with json or js objects.
 
 currently includes
 
-- [json **pointer**]("https://github.com/sagold/json-library/tree/master/lib/pointer") implementation `pointer.get` and `pointer.set`, which creates objects on its path
-- [json **query**]("https://github.com/sagold/json-library/tree/master/lib/query") a json pointer supporting glob-pattern `#/usr/**/*/passphrase`, filters
-`#/input/*?valid:true` and simple regular expressions `#/input/{name-.*}/id`
-- [json **relation**]("https://github.com/sagold/json-library/tree/master/lib/relation"), a relationship definition and utilities to setup and deconstruct relationships
-between objects
+- [json **pointer**]("https://github.com/sagold/json-library/tree/master/lib/pointer") implementation `pointer.get` and
+`pointer.set`, which creates objects on its path and `pointer.delete`, to remove a property or item
+
+- [json **query**]("https://github.com/sagold/json-library/tree/master/lib/query") a json pointer supporting
+glob-pattern `#/usr/**/*/passphrase`, filters `#/input/*?valid:true` and simple regular expressions
+`#/input/{name-.*}/id`
+
+- [json **relation**]("https://github.com/sagold/json-library/tree/master/lib/relation"), a relationship definition and
+utilities to setup and deconstruct relationships between objects
 
 
 For an up-to-date documentation refer to the [unit tests]("https://github.com/sagold/json-library/tree/master/test/unit").
@@ -41,6 +45,9 @@ will install `bower_components/json-library`, where by default `/dist/JsonLibrar
 
 `npm install json-library`
 
+you can also directly require separate modules with `require("json-libary/pointer")` and
+`require("json-libary/query")`
+
 
 ## Usage
 
@@ -61,7 +68,7 @@ var object = pointer.delete({"a":{"b"}:[{"id":"target"}]}, "#/a/b/0"); // {"a":{
 var pointerToTarget = pointer.join("#/a", "#/b", "/0/", "target"); // #/a/b/0/target
 ```
 
-For further details and functions check [pointer README](https://github.com/sagold/json-library/tree/master/lib/pointer)
+For further details check [pointer README](https://github.com/sagold/json-library/tree/master/lib/pointer)
 
 
 ### query
@@ -80,7 +87,8 @@ var matches = query.query(data,
 );
 ```
 
-For further details and functions check [query README](https://github.com/sagold/json-library/tree/master/lib/query).
+For further details and `query.get` and `query.delete` check
+[query README](https://github.com/sagold/json-library/tree/master/lib/query).
 
 
 ### json
