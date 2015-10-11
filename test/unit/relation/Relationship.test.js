@@ -2,9 +2,8 @@
 
 var expect = require("chai").expect;
 
-var json = require("../../../lib/json"),
-	Relation = require("../../../lib/relation/Relationship");
-
+var json = require("../../../lib/json");
+var Relation = require("../../../lib/relation/Relationship");
 
 describe("Relationship", function () {
 
@@ -79,7 +78,7 @@ describe("Relationship", function () {
 				]
 			};
 			// create relationship
-			relation = relation = new Relation(data, "person has_one:nose on:face as:nose");
+			relation = new Relation(data, "person has_one:nose on:face as:nose");
 		});
 
 		it("should load array models", function () {
