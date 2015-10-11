@@ -14,7 +14,7 @@ describe("query", function () {
 			cbMock = function cbMock() {
 				cbMock.args.push(arguments);
 				cbMock.called = true;
-			}
+			};
 
 			cbMock.called = false;
 			cbMock.args = [];
