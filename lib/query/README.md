@@ -94,7 +94,7 @@ To **filter** the matched objects an object-query string may be appended on each
 If you only require values or pointers, use queryGet to receive an Array as result:
 
 ```js
-	var queryGet = require("query").queryGet;
+	var queryGet = require("query").get;
 
 	// default: queryGet.VALUES
 	var arrayOfValues = queryGet(data, "#/**/id", queryGet.VALUE);
@@ -102,6 +102,17 @@ If you only require values or pointers, use queryGet to receive an Array as resu
 	var arrayOfJsonPointers = queryGet(data, "#/**/id", queryGet.POINTER);
 	// [arguments, arguments], where arguments = 0:value 1:object 2:key 3:jsonPointer
 	var arrayOfAllFourArguments = queryGet(data, "#/**/id", queryGet.ALL);
+```
+
+
+## queryDelete
+
+Multiple items on objects or in arrays may also be delete with query.delete:
+
+```js
+	var queryDelete = require("query").delete;
+
+	queryDelete(data, "#/**/*/data");
 ```
 
 
