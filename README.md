@@ -74,7 +74,7 @@ query.query(data,
 // return all json pointers of query matches
 var matches = query.query(data,
 	"#/pointer/{^regex.*}/**/*?property:hasValue||property:otherValue",
-	query.queryGet.POINTER
+	query.get.POINTER
 );
 ```
 
