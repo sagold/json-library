@@ -4,7 +4,7 @@
 At first query acts like a normal **json-pointer** where its match is passed to the given callback function:
 
 ```js
-	var query = require("query").query;
+	var query = require("query").run;
 	var data = {
 		"parent": {
 			"child": {"id": "child-1"}
@@ -22,7 +22,7 @@ At first query acts like a normal **json-pointer** where its match is passed to 
 But query also supports **glob-patterns** with `*`:
 
 ```js
-	var query = require("query").query;
+	var query = require("query").run;
 	var data = {
 		"parent": {
 			"child": {"id": "child-1"}
@@ -39,7 +39,7 @@ But query also supports **glob-patterns** with `*`:
 and **glob-patterns** with `**`:
 
 ```js
-	var query = require("query").query;
+	var query = require("query").run;
 	var data = {
 		"parent": {
 			"child": {"id": "child-1"}
@@ -56,7 +56,7 @@ and **glob-patterns** with `**`:
 To **filter** the matched objects an object-query string may be appended on each single step:
 
 ```js
-	var query = require("query").query;
+	var query = require("query").run;
 	var data = {
 		"parent": {
 			"valid": true,
@@ -77,7 +77,7 @@ To **filter** the matched objects an object-query string may be appended on each
 **regular expression** must be wrapped with `{.*}`:
 
 ```js
-	var query = require("query").query;
+	var query = require("query").run;
 	var data = {
 		"albert": {valid: true},
 		"alfred": {valid: false},

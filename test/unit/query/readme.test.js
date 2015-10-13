@@ -30,7 +30,7 @@ describe("query", function () {
 				}
 			};
 
-			q.query(data, "#/*/child/id", cbMock);
+			q.run(data, "#/*/child/id", cbMock);
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(2);
@@ -48,7 +48,7 @@ describe("query", function () {
 				}
 			};
 
-			q.query(data, "#/**/id", cbMock);
+			q.run(data, "#/**/id", cbMock);
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(2);
@@ -68,7 +68,7 @@ describe("query", function () {
 				}
 			};
 
-			q.query(data, "#/**?valid:true&&ignore:undefined/child", cbMock);
+			q.run(data, "#/**?valid:true&&ignore:undefined/child", cbMock);
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(1);
 			expect(cbMock.args[0][0]).to.eq(data.parent.child);
@@ -81,7 +81,7 @@ describe("query", function () {
 				"alfons": {valid: true}
 			};
 
-			q.query(data, "#/{al[^b]}?valid:true", cbMock);
+			q.run(data, "#/{al[^b]}?valid:true", cbMock);
 
 			expect(cbMock.called).to.be.true;
 			expect(cbMock.args.length).to.eq(1);

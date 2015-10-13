@@ -1,6 +1,6 @@
 
 var expect = require("chai").expect;
-var q = require("../../../lib/query");
+var query = require("../../../lib/query");
 
 
 describe("query", function () {
@@ -20,7 +20,7 @@ describe("query", function () {
 
 	it("should callback for matched jsonpointer", function () {
 
-		q.query({
+		query.run({
 			"first": {
 				"value": "text"
 			}
@@ -33,7 +33,7 @@ describe("query", function () {
 
 	it("should callback with value, key, object and pointer", function () {
 
-		q.query({
+		query.run({
 			"first": {
 				"value": "text"
 			}
@@ -47,7 +47,7 @@ describe("query", function () {
 
 	it("should callback on nested objects", function () {
 
-		q.query({
+		query.run({
 			"first": {
 				"value": "text"
 			}
@@ -60,7 +60,7 @@ describe("query", function () {
 
 	it("should callback only if match", function () {
 
-		q.query({
+		query.run({
 			"first": {
 				"value": "text"
 			}
@@ -75,7 +75,7 @@ describe("query", function () {
 
 		it("should callback on all items", function () {
 
-			q.query({
+			query.run({
 				"first": {
 					"value": "text"
 				},
@@ -90,7 +90,7 @@ describe("query", function () {
 
 		it("should continue for all found items", function () {
 
-			q.query({
+			query.run({
 				"first": {
 					"value": "first"
 				},
@@ -115,7 +115,7 @@ describe("query", function () {
 
 		it("should callback on matched items", function () {
 
-			q.query({
+			query.run({
 				"first": {
 					"value": "text"
 				},
@@ -132,7 +132,7 @@ describe("query", function () {
 
 		it("should continue after query", function () {
 
-			q.query({
+			query.run({
 				"first": {
 					"value": "text"
 				},
@@ -153,7 +153,7 @@ describe("query", function () {
 
 		it("should callback on all keys", function () {
 
-			q.query({
+			query.run({
 				"1": {
 					"value": "2",
 					"3": {
@@ -173,7 +173,7 @@ describe("query", function () {
 
 		it("should callback on all keys, even without /*", function () {
 
-			q.query({
+			query.run({
 				"1": {
 					"value": "2",
 					"3": {
@@ -193,7 +193,7 @@ describe("query", function () {
 
 		it("should callback on all matched keys", function () {
 
-			q.query({
+			query.run({
 				"first": {
 					"value": "text",
 					"inner": {
@@ -213,7 +213,7 @@ describe("query", function () {
 
 		it("should continue on matched globs", function () {
 
-			q.query({
+			query.run({
 				"a": {
 					"id": "a",
 					"needle": "needle",
@@ -246,7 +246,7 @@ describe("query", function () {
 
 		it("should apply {...} as regex on property names", function () {
 
-			q.query({
+			query.run({
 				"a1": true,
 				"b1": false,
 				"a2": true,

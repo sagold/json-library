@@ -76,12 +76,12 @@ For further details check [pointer README](https://github.com/sagold/json-librar
 ```js
 var query = require("json-library").query;
 // call on each match of the query's matches
-query.query(data,
+query.run(data,
 	"#/pointer/{regex.*}/**/*?property:hasValue||property:otherValue",
 	function (value, key, parentObject, jsonPointer) {
 	});
 // return all json pointers of query matches
-var matches = query.query(data,
+var matches = query.run(data,
 	"#/pointer/{^regex.*}/**/*?property:hasValue||property:otherValue",
 	query.get.POINTER
 );
@@ -90,18 +90,6 @@ var matches = query.query(data,
 For further details and `query.get` and `query.delete` check
 [query README](https://github.com/sagold/json-library/tree/master/lib/query).
 
-
-### json
-
-#### circular dependencies
-
-```js
-var json = require("json-library").json;
-// stringify data containing circular dependencies
-var circularJsonString = json.stringify(circularData, null, pretty);
-var data = json.parse(circularJsonString);
-JSON.stringify(data); // throws
-```
 
 ### relationship
 
