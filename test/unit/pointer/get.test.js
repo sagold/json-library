@@ -29,6 +29,12 @@ describe("pointer.get", function () {
 		expect(result).to.eq("propertyValue")
 	});
 
+	it("should return value if falsy", function () {
+		var result = pointer.get({property: 0}, "/property");
+
+		expect(result).to.be.eq(0);
+	});
+
 	it("should return nested properties", function () {
 		var result = pointer.get({property: {value: "propertyValue"}}, "#/property/value");
 
