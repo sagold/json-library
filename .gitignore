@@ -1,6 +1,5 @@
 node_modules
 status.png
-test/log
 build
 bower_components
 *.sublime-workspace
