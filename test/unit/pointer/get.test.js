@@ -11,16 +11,16 @@ describe("pointer.get", function () {
 		expect(result).to.eq("propertyValue")
 	});
 
-	it("should return null if property does not exist", function () {
+	it("should return undefined if property does not exist", function () {
 		var result = pointer.get({property: "propertyValue"}, "/value");
 
-		expect(result).to.be.null;
+		expect(result).to.be.undefined;
 	});
 
-	it("should return null if pointer is empty", function () {
+	it("should return undefined if pointer is empty", function () {
 		var result = pointer.get({property: "propertyValue"}, null);
 
-		expect(result).to.be.null;
+		expect(result).to.be.undefined;
 	});
 
 	it("should ignore leading #", function () {
