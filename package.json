@@ -1,6 +1,6 @@
 {
   "name": "json-library",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A range of json, json pointer, json schema and json relationship utility functions",
   "main": "lib",
   "scripts": {
