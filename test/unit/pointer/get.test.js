@@ -41,6 +41,12 @@ describe("pointer.get", function () {
 		expect(result).to.eq("propertyValue")
 	});
 
+	it("should return null if nested property does not exist", function () {
+		var result = pointer.get({property: {value: "propertyValue"}}, "#/property/missing/value");
+
+		expect(result).to.be.undefined;
+	});
+
 	it("should resolve arrays", function () {
 		var result = pointer.get(["0", {value: "propertyValue"}], "#/1/value");
 
