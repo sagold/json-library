@@ -5,6 +5,18 @@ var pointer = require("../../../lib/pointer");
 
 describe("pointer.get", function () {
 
+	it("should return input value", function () {
+		var result = pointer.get({property: "propertyValue"}, "#");
+
+		expect(result).to.deep.eq({property: "propertyValue"})
+	});
+
+	it("should return input value for empty string", function () {
+		var result = pointer.get({property: "propertyValue"}, "");
+
+		expect(result).to.deep.eq({property: "propertyValue"})
+	});
+
 	it("should return property", function () {
 		var result = pointer.get({property: "propertyValue"}, "/property");
 
@@ -41,7 +53,7 @@ describe("pointer.get", function () {
 		expect(result).to.eq("propertyValue")
 	});
 
-	it("should return null if nested property does not exist", function () {
+	it("should return 'undefined' if nested property does not exist", function () {
 		var result = pointer.get({property: {value: "propertyValue"}}, "#/property/missing/value");
 
 		expect(result).to.be.undefined;
