@@ -18,6 +18,22 @@ describe("query", function () {
 		cbMock.args = [];
 	});
 
+	it("should callback for root pointer", function () {
+		query.run({
+			"first": {
+				"value": "text"
+			}
+		}, "#", cbMock);
+
+		expect(cbMock.called).to.be.true;
+		expect(cbMock.args.length).to.eq(1);
+		expect(cbMock.args[0][0]).to.deep.eq({
+			"first": {
+				"value": "text"
+			}
+		});
+	});
+
 	it("should callback for matched jsonpointer", function () {
 
 		query.run({
