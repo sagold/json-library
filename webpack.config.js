@@ -6,8 +6,8 @@ var webpack = require("webpack");
 
 var env = {
 	PRODUCTION: process.env.NODE_ENV === "production",
-	DESTINATION: "dist"
-}
+	DESTINATION: process.env.NODE_ENV === "production" ? "dist" : "build"
+};
 
 
 var config = {
