@@ -1,4 +1,4 @@
 "use strict";
 
 
-module.exports = require("./lib/query");
+module.exports = require("@sagold/json-query");

@@ -1,4 +1,4 @@
 "use strict";
 
 
-module.exports = require("./lib/relation");
+module.exports = require("json-relationship");
