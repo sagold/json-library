@@ -1,27 +1,24 @@
 {
   "name": "json-library",
   "version": "1.0.2",
-  "description": "A range of json, json pointer, json schema and json relationship utility functions",
-  "main": "lib",
+  "description": "Mothership for json-pointer, json-query and json-relationship",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "grunt test",
-    "dist": "grunt dist",
-    "build": "grunt build"
+    "test": "npm run test-unit; npm run test-integration",
+    "test-integration": "mocha --recursive 'test/integration/*.test.js' -R spec; exit 0",
+    "test-unit": "mocha --recursive 'test/unit/*.test.js' -R spec; exit 0",
+    "tdd": "watch 'npm run test-unit' lib/ app/ test/; exit 0"
   },
   "author": "Sascha Goldhofer",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^1.9.2",
-    "grunt": "^0.4.5",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-mocha-test": "^0.12.1",
-    "grunt-notify": "^0.3.1",
-    "grunt-webpack": "^1.0.8",
-    "mocha": "^1.21.5",
-    "sinon": "^1.12.2",
     "uglify-loader": "^1.1.0",
     "webpack": "^1.5.3",
     "webpack-dev-server": "^1.7.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@sagold/json-pointer": "^1.0.1",
+    "@sagold/json-query": "^1.0.0",
+    "json-relationship": "^1.0.0"
+  }
 }
