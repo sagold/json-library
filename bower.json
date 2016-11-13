@@ -1,11 +1,7 @@
 {
   "name": "json-library",
-<<<<<<< HEAD
-  "version": "1.0.3",
-=======
   "version": "2.0.0",
->>>>>>> develop
-  "description": "A range of json, json pointer, json schema and json relationship utility functions",
+  "description": "Mothership for json-pointer, json-query and json-relationship",
   "main": "dist/JsonLibrary.min.js",
   "ignore": [
     "test",
