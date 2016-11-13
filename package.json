@@ -1,9 +1,11 @@
 {
   "name": "json-library",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Mothership for json-pointer, json-query and json-relationship",
   "main": "lib/index.js",
   "scripts": {
+    "build": "webpack",
+    "dist": "NODE_ENV=production webpack",
     "test": "npm run test-unit; npm run test-integration",
     "test-integration": "mocha --recursive 'test/integration/*.test.js' -R spec; exit 0",
     "test-unit": "mocha --recursive 'test/unit/*.test.js' -R spec; exit 0",
@@ -12,7 +14,6 @@
   "author": "Sascha Goldhofer",
   "license": "MIT",
   "devDependencies": {
-    "uglify-loader": "^1.1.0",
     "webpack": "^1.5.3",
     "webpack-dev-server": "^1.7.0"
   },
