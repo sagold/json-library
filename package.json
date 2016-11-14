@@ -18,8 +18,8 @@
     "webpack-dev-server": "^1.7.0"
   },
   "dependencies": {
-    "@sagold/json-pointer": "^1.0.1",
-    "@sagold/json-query": "^1.0.0",
+    "gold-json-pointer": "^1.0.1",
+    "gold-json-query": "^1.0.0",
     "json-relationship": "^1.0.0"
   }
 }
