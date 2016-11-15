@@ -1,7 +1,7 @@
 {
   "name": "json-library",
   "version": "2.0.2",
-  "description": "Mothership for json-pointer, json-query and json-relationship",
+  "description": "Mothership of json-pointer, json-query and json-relationship",
   "main": "lib/index.js",
   "scripts": {
     "build": "webpack",
@@ -18,8 +18,8 @@
     "webpack-dev-server": "^1.7.0"
   },
   "dependencies": {
-    "gold-json-pointer": "^1.0.1",
-    "gold-json-query": "^1.0.0",
+    "gson-pointer": "^1.0.3",
+    "gson-query": "^1.0.2",
     "json-relationship": "^1.0.0"
   }
 }
