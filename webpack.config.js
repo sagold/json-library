@@ -9,6 +9,8 @@ var env = {
 	DESTINATION: process.env.NODE_ENV === "production" ? "dist" : "build"
 };
 
+console.log("env", env);
+
 
 var config = {
 	devtool: env.PRODUCTION ? false : "#eval",
