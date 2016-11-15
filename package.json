@@ -1,6 +1,6 @@
 {
   "name": "json-library",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Mothership of json-pointer, json-query and json-relationship",
   "main": "lib/index.js",
   "scripts": {
