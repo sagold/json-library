@@ -1,4 +1,4 @@
 "use strict";
 
 
-module.exports = require("@sagold/json-pointer");
+module.exports = require("gson-pointer");
