@@ -3,6 +3,10 @@
   "version": "2.0.4",
   "description": "Mothership of json-pointer, json-query and json-relationship",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sagold/json-library.git"
+  },
   "scripts": {
     "build": "webpack",
     "dist": "NODE_ENV=production webpack",
